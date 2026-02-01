@@ -33,10 +33,11 @@ func main() {
 		Port:   viper.GetString("PORT"),
 		DBConn: viper.GetString("DB_CONN"),
 	}
+	fmt.Println("Error", config.DBConn, "End")
 
 	db, err := database.InitDB(config.DBConn)
 	if err != nil {
-		log.Fatal("Failed initialize database")
+		log.Fatal("Failed initialize database", err)
 	}
 	defer db.Close()
 
